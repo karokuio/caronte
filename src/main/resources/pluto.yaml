@@ -1,0 +1,13 @@
+docker:
+  uri: tcp://172.18.0.1:4243
+
+events:
+  broker:
+    port: 5672
+    username: guest
+    password: guest
+    host: rabbit
+  publish:
+    exchange: karoku
+  consume:
+    queue: templates

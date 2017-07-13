@@ -31,6 +31,8 @@ RUN apt-get update && apt-get install -yq \
 USER user
 WORKDIR /home/user
 COPY files/dev-entrypoint.sh .
+COPY files/deploy.sh .
 RUN sudo chmod +x /home/user/dev-entrypoint.sh
+RUN sudo chmod +x /home/user/deploy.sh
 
 EXPOSE 5050

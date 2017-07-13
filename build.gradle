@@ -20,9 +20,10 @@ apply plugin: 'com.github.johnrengelman.shadow'
 mainClassName = 'caronte.Application'
 
 repositories {
-  mavenLocal()
-  mavenCentral()
   jcenter()
+  maven {
+    url  "http://dl.bintray.com/karoku/maven"
+  }
 }
 
 dependencies {

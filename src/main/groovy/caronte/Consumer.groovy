@@ -2,16 +2,11 @@ package caronte
 
 import javax.inject.Inject
 import groovy.json.JsonSlurper
-import groovy.transform.InheritConstructors
 import groovy.util.logging.Slf4j
 import com.rabbitmq.client.AMQP
-import com.rabbitmq.client.Channel
 import com.rabbitmq.client.Envelope
-import com.rabbitmq.client.DefaultConsumer
 import com.rabbitmq.client.ConnectionFactory
-
 import pluto.events.RabbitConsumer
-import com.github.dockerjava.api.DockerClient
 
 /**
  * Consumes messages to create or delete a given
@@ -46,9 +41,9 @@ class Consumer extends RabbitConsumer {
                       AMQP.BasicProperties properties,
                       byte[] body) {
 
-    Map message = new JsonSlurper().parse(body, 'UTF-8')
+    Map message = new JsonSlurper().parse(body, 'UTF-8') as Map
 
-    switch("${envelope.routingKey}") {
+    switch ("${envelope.routingKey}") {
       case "event.templates.created":
         log.info "creating template's image"
         service.buildTemplate(message)

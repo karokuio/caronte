@@ -1,15 +1,11 @@
 package caronte
 
 import groovy.util.logging.Slf4j
-import groovy.json.JsonOutput
 import javax.inject.Inject
-import java.nio.file.Files
 import java.nio.file.Paths
 import com.github.dockerjava.api.DockerClient
 import com.github.dockerjava.core.command.BuildImageResultCallback
-import com.github.dockerjava.api.model.BuildResponseItem
 import org.zeroturnaround.zip.ZipUtil
-
 import pluto.events.Publisher
 import pluto.util.Storage
 
@@ -68,7 +64,7 @@ class Service {
       .awaitImageId()
 
     log.info "successfully built template $tag with id $imageId"
-    publisher.publish("templates.image.built", json.payload)
+    publisher.publish("templates.image.built", json.payload as Serializable)
   }
 
   /**
@@ -86,6 +82,6 @@ class Service {
     Storage.deleteDirectory(Paths.get(config.storage.templates, tag))
 
     log.info "deleting template $tag [event]"
-    publisher.publish("templates.image.deleted", json.payload)
+    publisher.publish("templates.image.deleted", json.payload as Serializable)
   }
 }

@@ -1,4 +1,5 @@
 FROM java:8
+LABEL "name"="caronte"
 
 # Locale setup
 RUN apt-get update && \

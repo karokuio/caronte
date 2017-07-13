@@ -27,7 +27,7 @@ repositories {
 }
 
 dependencies {
-    compile "io.karoku:pluto:0.1.0"
+    compile "io.karoku:pluto:$pluto"
     testCompile "org.spockframework:spock-core:$spock_core"
     testCompile "junit:junit:$junit"
 }

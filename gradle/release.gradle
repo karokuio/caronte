@@ -1,0 +1,51 @@
+apply plugin: 'nebula.nebula-release'
+apply plugin: "org.ajoberstar.git-publish"
+
+gitPublish {
+  repoUri = 'https://github.com/karoku/caronteo.git'
+  branch = 'gh-pages'
+
+  contents {
+    from file('build/site')
+  }
+
+  commitMessage = "Released version ${version}"
+}
+
+gitPublishPush {
+  dependsOn 'setAuthentication'
+  dependsOn 'generateSite'
+}
+
+release {
+  tagStrategy {
+    prefixNameWithV = false
+  }
+}
+
+task setAuthentication() {
+  doLast {
+    System.setProperty('org.ajoberstar.grgit.auth.username', githubToken)
+  }
+}
+
+tasks.prepare.dependsOn setAuthentication
+tasks.release.dependsOn setAuthentication
+
+/**
+ * DOCKER PRO IMAGE ARTIFACTS
+ */
+task prepareDocker() {
+  doLast {
+    copy {
+      from("$buildDir/libs") {
+        rename '.*-.*.jar', 'caronte.jar'
+      }
+      into "$buildDir/docker"
+    }
+    copy {
+      from "docker"
+      into "$buildDir/docker"
+    }
+  }
+}

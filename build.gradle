@@ -1,16 +1,32 @@
-apply plugin: 'groovy'
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:$shadow_plugin"
+        classpath "org.ajoberstar:gradle-git-publish:$gradle_git"
+        classpath "com.netflix.nebula:nebula-release-plugin:$nebula_release_plugin"
+    }
+}
+
+apply from: 'gradle/compiler.gradle'
+apply from: 'gradle/codenarc.gradle'
+apply from: 'gradle/release.gradle'
+
 apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 mainClassName = 'caronte.Application'
 
 repositories {
   mavenLocal()
+  mavenCentral()
   jcenter()
 }
 
 dependencies {
     compile "io.karoku:pluto:0.1.0"
-
     testCompile "org.spockframework:spock-core:$spock_core"
     testCompile "junit:junit:$junit"
 }

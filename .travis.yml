@@ -1,0 +1,22 @@
+language: java
+jdk:
+  - oraclejdk8
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+cache:
+  directories:
+    - "$HOME/.gradle/caches/"
+    - "$HOME/.gradle/wrapper/"
+sudo: required
+branches:
+  only:
+    - master
+services:
+  - docker
+script:
+  - ./gradlew build final prepareDocker -PgithubToken=$GH_TOKEN
+  - export CARONTE_VERSION=$(git describe --abbrev=0 --tags)
+  - cd build/docker && docker build -t karoku-docker-docker.bintray.io/caronte:$CARONTE_VERSION .
+  - docker login -u $BR_USERNAME -p $BR_API_KEY karoku-docker-docker.bintray.io
+  - docker tag karoku-docker-docker.bintray.io/caronte karoku-docker-docker.bintray.io/caronte:$CARONTE_VERSION
+  - docker push karoku-docker-docker.bintray.io/caronte:$CARONTE_VERSION

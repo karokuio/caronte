@@ -1,0 +1,9 @@
+= Caronte
+:revnumber: {releaseVersion}
+:numbered:
+:imagesDir: images/
+:baseDir: ../../..
+
+:sourcesMain: {baseDir}/src/main/groovy
+:sourcesResources: {baseDir}/src/main/resources
+:sourcesTests: {baseDir}/src/test/groovy

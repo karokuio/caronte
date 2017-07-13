@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-cd /home/user/ws && ./gradlew run
+cd /home/user/ws && sudo ./gradlew run

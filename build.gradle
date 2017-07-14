@@ -21,6 +21,7 @@ mainClassName = 'caronte.Application'
 
 repositories {
   jcenter()
+  mavenCentral()
   maven {
     url  "http://dl.bintray.com/karoku/maven"
   }
@@ -28,6 +29,7 @@ repositories {
 
 dependencies {
     compile "io.karoku:pluto:$pluto"
+    compile "org.codehaus.groovy:groovy-all:$groovy_all"
     testCompile "org.spockframework:spock-core:$spock_core"
     testCompile "junit:junit:$junit"
 }

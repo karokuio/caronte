@@ -18,5 +18,5 @@ script:
   - export CARONTE_VERSION=$(git describe --abbrev=0 --tags)
   - cd build/docker && docker build -t karoku-docker-docker.bintray.io/caronte:$CARONTE_VERSION .
   - docker login -u $BR_USERNAME -p $BR_API_KEY karoku-docker-docker.bintray.io
-  - docker tag karoku-docker-docker.bintray.io/caronte karoku-docker-docker.bintray.io/caronte:$CARONTE_VERSION
+  - docker tag karoku-docker-docker.bintray.io/caronte:$CARONTE_VERSION karoku-docker-docker.bintray.io/caronte:$CARONTE_VERSION
   - docker push karoku-docker-docker.bintray.io/caronte:$CARONTE_VERSION

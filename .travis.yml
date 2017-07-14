@@ -14,7 +14,7 @@ branches:
 services:
   - docker
 script:
-  - ./gradlew build final prepareDocker -PgithubToken=$GH_TOKEN
+  - ./gradlew build shadow final prepareDocker -PgithubToken=$GH_TOKEN
   - export CARONTE_VERSION=$(git describe --abbrev=0 --tags)
   - cd build/docker && docker build -t karoku-docker-docker.bintray.io/caronte:$CARONTE_VERSION .
   - docker login -u $BR_USERNAME -p $BR_API_KEY karoku-docker-docker.bintray.io

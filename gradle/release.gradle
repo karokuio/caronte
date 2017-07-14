@@ -2,7 +2,7 @@ apply plugin: 'nebula.nebula-release'
 apply plugin: "org.ajoberstar.git-publish"
 
 gitPublish {
-  repoUri = 'https://github.com/karoku/caronteo.git'
+  repoUri = 'https://github.com/karoku/caronte.git'
   branch = 'gh-pages'
 
   contents {

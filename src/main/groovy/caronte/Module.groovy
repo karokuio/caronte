@@ -34,6 +34,6 @@ class Module extends AbstractModule {
    */
   @Provides
   Config loadConfig() {
-    return Yaml.loadAs("caronte.yaml", Config)
+    return Yaml.loadAs("/caronte.yaml", Config)
   }
 }

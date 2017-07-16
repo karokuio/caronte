@@ -5,7 +5,7 @@ import groovy.json.JsonSlurper
 import groovy.util.logging.Slf4j
 import com.rabbitmq.client.AMQP
 import com.rabbitmq.client.Envelope
-import com.rabbitmq.client.ConnectionFactory
+import com.rabbitmq.client.Channel
 import pluto.events.RabbitConsumer
 
 /**
@@ -31,8 +31,8 @@ class Consumer extends RabbitConsumer {
    * @since 0.1.0
    */
   @Inject
-  Consumer(ConnectionFactory factory) {
-    super(factory)
+  Consumer(Channel channel) {
+    super(channel)
   }
 
   @Override

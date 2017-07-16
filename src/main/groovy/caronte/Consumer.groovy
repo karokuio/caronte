@@ -44,11 +44,11 @@ class Consumer extends RabbitConsumer {
     Map message = new JsonSlurper().parse(body, 'UTF-8') as Map
 
     switch ("${envelope.routingKey}") {
-      case "event.templates.created":
+      case Events.TEMPLATE_CREATED:
         log.info "creating template's image"
         service.buildTemplate(message)
         break
-      case "event.templates.deleted":
+      case Events.TEMPLATE_DELETED:
         log.info "deleting template's image"
         service.deleteTemplate(message)
         break

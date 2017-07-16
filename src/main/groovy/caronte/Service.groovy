@@ -64,7 +64,7 @@ class Service {
       .awaitImageId()
 
     log.info "successfully built template $tag with id $imageId"
-    publisher.publish("templates.image.built", json.payload as Serializable)
+    publisher.publish(Events.TEMPLATE_IMAGE_CREATED, json.payload as Serializable)
   }
 
   /**
@@ -82,6 +82,6 @@ class Service {
     Storage.deleteDirectory(Paths.get(config.storage.templates, tag))
 
     log.info "deleting template $tag [event]"
-    publisher.publish("templates.image.deleted", json.payload as Serializable)
+    publisher.publish(Events.TEMPLATE_IMAGE_DELETED, json.payload as Serializable)
   }
 }
